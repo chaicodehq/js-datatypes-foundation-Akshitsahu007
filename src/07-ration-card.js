@@ -54,20 +54,50 @@
  */
 export function getFamilyNames(registry) {
   // Your code here
+  let result = [];
+  if (typeof registry === "object" && !Array.isArray(registry) && registry !== null) {
+    result = Object.keys(registry)
+  }
+  return result
 }
 
 export function getAllFamilies(registry) {
   // Your code here
+  let result = [];
+  if (typeof registry === "object" && !Array.isArray(registry) && registry !== null) {
+    result = Object.values(registry)
+  }
+  return result
 }
 
 export function getRationCardEntries(registry) {
   // Your code here
+  let result = [];
+  if (typeof registry === "object" && !Array.isArray(registry) && registry !== null) {
+    Object.entries(registry).forEach(([Id, family]) => {
+      result.push([Id, family])
+    })
+  }
+  return result
+
 }
 
 export function hasRationCard(registry, cardId) {
   // Your code here
+  let result = false;
+  if (typeof registry === "object" && !Array.isArray(registry) && typeof cardId === "string" && registry !== null) {
+    result = registry.hasOwnProperty(cardId)
+  }
+  return result
 }
 
 export function removeRationCard(registry, cardId) {
   // Your code here
+  const isObjeact = typeof registry === "object" && registry !== null && !Array.isArray(registry);
+  let result = false;
+  if (isObjeact && typeof cardId === 'string') {
+    result = registry.hasOwnProperty(cardId);
+    delete registry[cardId]
+  }
+  return result
 }
