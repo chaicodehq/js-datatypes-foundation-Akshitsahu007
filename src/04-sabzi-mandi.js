@@ -49,20 +49,52 @@
  */
 export function addToCart(cart, item) {
   // Your code here
+  if (typeof (item) === "string" && item.trim().length !== 0 && Array.isArray(cart)) {
+    cart.push(item)
+    return cart.length
+  } else if (!Array.isArray(cart)) {
+    return -1
+  } else {
+    return cart.length
+  }
 }
 
 export function addUrgentItem(cart, item) {
   // Your code here
+  if (!Array.isArray(cart)) {
+    return []
+  } else if (typeof (item) === "string" && item.trim().length !== 0) {
+    cart.unshift(item)
+    return cart
+  } else {
+    return cart
+  }
+
 }
 
 export function removeLastItem(cart) {
   // Your code here
+  if (Array.isArray(cart)) {
+    return cart.pop()
+  } else {
+    return undefined
+  }
 }
 
 export function isInCart(cart, item) {
   // Your code here
+  if (Array.isArray(cart)) {
+    return cart.includes(item)
+  } else {
+    return false
+  }
 }
 
 export function mergeCarts(cart1, cart2) {
   // Your code here
+  cart1 = Array.isArray(cart1) ? cart1 : [];
+  cart2 = Array.isArray(cart2) ? cart2 : [];
+
+  return [...cart1, ...cart2]
+
 }
